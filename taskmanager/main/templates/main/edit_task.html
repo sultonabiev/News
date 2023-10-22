@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1>Редактировать статью: {{ task.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'view_task' task.id %}">Отмена</a>
+{% endblock %}

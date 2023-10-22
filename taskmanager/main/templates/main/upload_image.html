@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Загрузка изображения
+{% endblock %}
+
+{% block content %}
+
+    <h1>Загрузка изображения</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="hidden" name="task_id" value="{{ task_id }}">
+        <button type="submit">Загрузить изображение</button>
+    </form>
+
+    <a href="{% url 'success_page' %}">Вернуться к статьям</a>
+
+{% endblock %}

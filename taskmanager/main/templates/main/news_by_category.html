@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1>Новости по категории: {{ category }}</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.task }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

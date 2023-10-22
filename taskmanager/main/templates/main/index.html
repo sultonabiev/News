@@ -1,19 +1,44 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-{{ title }}
+    {{ title }}
 {% endblock %}
 
 {% block content %}
+    <form method="GET">
+        {% csrf_token %}
+        <input type="text" name="search_pr" placeholder="Поиск новостей">
+        <button>Поиск</button>
+    </form>
+    <div class="category-list">
+        <ul class="nav">
+            <li><h2><a class="nav-link" href="{% url 'news_by_category' category='спорт' %}">Спорт</a></h2></li>
+            <li><h2><a class="nav-link" href="{% url 'news_by_category' category='Политика' %}">Политика</a></h2></li>
+            <li><h2><a class="nav-link" href="{% url 'news_by_category' category='группа 44' %}">Группа 44</a></h2></li>
+            <li><h2><a class="nav-link" href="{% url 'news_by_category' category='не важные новости' %}">Не Важные Новости</a></h2></li>
+        </ul>
+    </div>
+
     <h1>Главная страница</h1>
+
+    <h3 class="news-digest-title">Дайджест новостей</h3>
+
     {% if tasks %}
-        {% for el in tasks %}
-            <div class="alert alert-warning mt-2">
-                <h3>{{ el.title }}</h3>
-                <p>{{ el.task }}</p>
-            </div>
-        {% endfor %}
+        <div class="news-tasks">
+            {% for el in tasks %}
+                <div class="news-task alert alert-warning mt-2" style="background-color: #FFFFCC; border: 1px solid #FFD700; padding: 10px; margin-top: 10px;">
+                    <h3>{{ el.title }}</h3>
+                    <p>{{ el.task }}</p>
+                    {% if el.image %}
+                        <img src="{{ el.image.url }}" alt="{{ el.title }}">
+                    {% else %}
+                        <p>Изображение отсутствует</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     {% else %}
-        <p>У нас нету записей!</p>
+        <p>У нас нет записей!</p>
     {% endif %}
+</div>
 {% endblock %}
