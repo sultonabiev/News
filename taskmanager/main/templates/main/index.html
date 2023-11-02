@@ -34,6 +34,8 @@
                     {% else %}
                         <p>Изображение отсутствует</p>
                     {% endif %}
+                    <p><strong>Дата публикации:</strong> {{ el.pub_date }}</p>
+                    <p><strong>Дата декатрирования:</strong> {{ el.modification_date }}</p>
                 </div>
             {% endfor %}
         </div>

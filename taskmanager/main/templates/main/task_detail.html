@@ -4,6 +4,8 @@
     <h1>{{ task.title }}</h1>
     <p>Категория: {{ task.category }}</p>
     <p>{{ task.task }}</p>
+    <p><strong>Дата публикации:</strong> {{ task.pub_date }}</p>
+    <p><strong>Дата декатрирования:</strong> {{ task.modification_date }}</p>
     <a href="{% url 'edit_task' task.id %}">Редактировать</a>
     <a href="{% url 'delete_task' task.id %}">Удалить</a>
     <a href="{% url 'task_list' %}">Назад к списку статей</a>

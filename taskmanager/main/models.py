@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class MyImage(models.Model):
     name = models.CharField(max_length=255)
@@ -14,6 +15,8 @@ class Task(models.Model):
         ('не важные новости', 'Не Важные Новости'))
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     image = models.ForeignKey(MyImage, on_delete=models.SET_NULL, blank=True, null=True)
+    pub_date = models.DateTimeField(default=timezone.now)
+    modification_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
